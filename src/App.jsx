@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-import { Helmet } from "react-helmet-async";
+import ReactHelmetAsync from "react-helmet-async";
+
+const { Helmet, HelmetProvider } = ReactHelmetAsync;
 
 import {
 
