@@ -29,9 +29,9 @@ export const siteConfig = {
     title: "Advocate K. Ravi Kiran | Lawyer in Vijayawada, Andhra Pradesh",
     description: "Advocate K. Ravi Kiran (Ravi Kiran Kumar Kolusu), B.A., LL.B., practising since 2003 in Vijayawada, Andhra Pradesh. Profile and information about civil, criminal, writ, bail and service matters."
   },
-  gallery: Array.from({ length: 8 }, (_, i) => ({
-    src: `/images/gallery/img${i + 1}.jpg`,
-    alt: `Gallery placeholder ${i + 1} for Advocate K. Ravi Kiran`
+  gallery: Array.from({ length: 7 }, (_, i) => ({
+    src: `/images/gallery/img${i + 1}.jpeg`,
+    alt: `Professional gallery photograph ${i + 1} for Advocate K. Ravi Kiran`
   }))
 };
 

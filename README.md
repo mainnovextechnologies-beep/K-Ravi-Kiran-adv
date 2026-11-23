@@ -8,7 +8,7 @@ Premium responsive advocate profile website using React + Vite, with static prer
 - Forest green, champagne gold and ivory theme.
 - Responsive navigation and mobile-first hero.
 - About, practice areas, courts, gallery, FAQs and contact sections.
-- Gallery placeholders `img1.jpg` through `img8.jpg` (replace with approved photographs).
+- Seven gallery photographs from `public/images/gallery/img1.jpeg` through `img7.jpeg`.
 - Click-to-call and WhatsApp enquiry form.
 - Multiple SEO landing pages.
 - Server-rendered static HTML at build time using ReactDOMServer.
@@ -18,7 +18,7 @@ Premium responsive advocate profile website using React + Vite, with static prer
 
 ## Requirements
 
-- Node.js 18.18+ (Node 20 LTS recommended)
+- Node.js 20.19+ or Node 22/24 (Node 24 LTS recommended; Node 26 is intentionally excluded for deployment compatibility).
 - npm
 
 ## Install and run
@@ -51,9 +51,9 @@ Update `public/robots.txt` with the real sitemap URL after changing the domain. 
 ## Images
 
 - Profile: `public/images/advocate-profile.png`
-- Gallery: `public/images/gallery/img1.jpg` through `img8.jpg`
+- Gallery: `public/images/gallery/img1.jpeg` through `img7.jpeg`
 
-Gallery images are clearly labelled placeholders. Replace them with genuine, approved images while keeping the filenames, or update the gallery configuration.
+Gallery images are loaded from the seven JPEG files already included in `public/images/gallery/`. To replace them, keep the same filenames or update the `gallery` array in `src/config/siteConfig.js`.
 
 ## SEO routes
 
@@ -69,6 +69,8 @@ Gallery images are clearly labelled placeholders. Replace them with genuine, app
 Each route is prerendered with its own title, description, canonical URL and useful page-specific introductory content. Review each page for factual accuracy and professional-conduct compliance before publishing. Do not publish thin or repetitive pages merely to target keywords.
 
 ## Deployment notes
+
+The included `vercel.json` runs the production build and publishes the generated `dist/` folder. The Vite configuration bundles `react-helmet-async` during SSR so the server build can resolve its named exports. The browser entry hydrates prerendered production HTML, but uses `createRoot` on the empty Vite development page.
 
 Deploy the contents of `dist/` to a static host that supports clean URL fallback / directory index files. Configure HTTPS and ensure all routes return their prerendered `index.html` with HTTP 200. Do not redirect every route to the homepage.
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import {
 
   Scale, Shield, Landmark, FileCheck, BriefcaseBusiness, Building2,
@@ -76,63 +76,73 @@ function Courts() {
 }
 
 function Gallery() {
-const [active, setActive] = useState(-1);
+  const [active, setActive] = useState(-1);
+  const gallery = Array.isArray(c.gallery) ? c.gallery : [];
 
-  // Images are stored in public/images/gallery/.
-const gallery = [
-{ src: "/images/gallery/img1.jpeg", alt: "Professional gallery photograph 1" },
-{ src: "/images/gallery/img2.jpeg", alt: "Professional gallery photograph 2" },
-{ src: "/images/gallery/img3.jpeg", alt: "Professional gallery photograph 3" },
-{ src: "/images/gallery/img4.jpeg", alt: "Professional gallery photograph 4" },
-{ src: "/images/gallery/img5.jpeg", alt: "Professional gallery photograph 5" },
-{ src: "/images/gallery/img6.jpeg", alt: "Professional gallery photograph 6" },
-{ src: "/images/gallery/img7.jpeg", alt: "Professional gallery photograph 7" }
-];
+  const change = (nextIndex) => {
+    if (gallery.length === 0) return;
+    setActive((nextIndex + gallery.length) % gallery.length);
+  };
 
-  const change = (n) => {
-setActive((n + gallery.length) % gallery.length);
-};
+  return (
+    <section className="section gallery-section" id="gallery">
+      <div className="section-label">04 / PHOTOGRAPHS</div>
+      <div className="section-heading">
+        <h2 className="section-title">Professional <em>Gallery</em></h2>
+        <p>Professional photographs and moments.</p>
+      </div>
 
-  return <section className="section gallery-section" id="gallery">
-<div className="section-label">04 / PHOTOGRAPHS</div>
-<div className="section-heading">
-<h2 className="section-title">Professional <em>Gallery</em></h2>
-<p>Professional photographs and moments.</p>
-</div>
-<div className="gallery-grid">
-  {gallery.map((img, i) => (
-    <button
-      className="gallery-item"
-      key={img.src}
-      onClick={() => setActive(i)}
-      aria-label={`Open gallery image ${i + 1}`}
-      type="button"
-    >
-      <img
-        src={img.src}
-        alt={img.alt}
-        loading="lazy"
-        onError={(e) => {
-          console.error("Gallery image could not be loaded:", img.src);
-          e.currentTarget.classList.add("image-load-error");
-        }}
-      />
-      <span>{String(i + 1).padStart(2, "0")}</span>
-    </button>
-  ))}
-</div>
+      <div className="gallery-grid">
+        {gallery.map((img, index) => (
+          <button
+            className="gallery-item"
+            key={img.src || index}
+            onClick={() => setActive(index)}
+            aria-label={`Open gallery image ${index + 1}`}
+            type="button"
+          >
+            <img
+              src={img.src}
+              alt={img.alt || `Gallery photograph ${index + 1}`}
+              loading="lazy"
+              decoding="async"
+              onError={(event) => {
+                console.error("Gallery image could not be loaded:", img.src);
+                event.currentTarget.classList.add("image-load-error");
+              }}
+            />
+            <span>{String(index + 1).padStart(2, "0")}</span>
+          </button>
+        ))}
+      </div>
 
-{active >= 0 && (
-  <div className="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image viewer">
-    <button className="lightbox-close" onClick={() => setActive(-1)} aria-label="Close gallery" type="button"><X /></button>
-    <button className="lightbox-prev" onClick={() => change(active - 1)} aria-label="Previous image" type="button"><ChevronLeft /></button>
-    <img src={gallery[active].src} alt={gallery[active].alt} />
-    <button className="lightbox-next" onClick={() => change(active + 1)} aria-label="Next image" type="button"><ChevronRight /></button>
-  </div>
-)}
+      {active >= 0 && gallery[active] && (
+        <div
+          className="lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Gallery image viewer"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setActive(-1);
+          }}
+        >
+          <button className="lightbox-close" onClick={() => setActive(-1)} aria-label="Close gallery" type="button">
+            <X />
+          </button>
+          <button className="lightbox-prev" onClick={() => change(active - 1)} aria-label="Previous image" type="button">
+            <ChevronLeft />
+          </button>
+          <img src={gallery[active].src} alt={gallery[active].alt || "Gallery photograph"} />
+          <button className="lightbox-next" onClick={() => change(active + 1)} aria-label="Next image" type="button">
+            <ChevronRight />
+          </button>
+        </div>
+      )}
+    </section>
+  );
+}
 
-  </section>;
-}function Contact() {
+function Contact() {
 
   const [form, setForm] = useState({ name: "", phone: "", matter: "Civil Litigation", message: "" });
 
