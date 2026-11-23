@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 
-import ReactHelmetAsync from "react-helmet-async";
-
-const { Helmet, HelmetProvider } = ReactHelmetAsync;
-
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import {
 
   Scale, Shield, Landmark, FileCheck, BriefcaseBusiness, Building2,
@@ -46,7 +43,7 @@ function Hero() {
 
   return <section className="hero" id="home"><div className="hero-inner">
 
-    <div className="hero-photo-wrap"><img className="hero-photo" src={c.profileImage} alt="Advocate K. Ravi Kiran in professional advocate attire" fetchPriority="high"/><span className="photo-caption">ADVOCATE · VIJAYAWADA</span></div>
+    <div className="hero-photo-wrap"><img className="hero-photo" src={c.profileImage} alt="Advocate K. Ravi Kiran in professional advocate attire" fetchpriority="high"/><span className="photo-caption">ADVOCATE · VIJAYAWADA</span></div>
 
     <div className="hero-copy"><div className="eyebrow"><span/> LEGAL PRACTICE · ANDHRA PRADESH</div><h1>Advocate <em>K. Ravi Kiran</em></h1><p className="alias">Also known as Ravi Kiran Kumar Kolusu</p><h2>Committed to Justice. Dedicated to Legal Representation.</h2><p className="hero-description">A practising advocate based in Vijayawada, Andhra Pradesh, with practice information covering civil, criminal, writ, bail, service and other statutory matters.</p>
 
