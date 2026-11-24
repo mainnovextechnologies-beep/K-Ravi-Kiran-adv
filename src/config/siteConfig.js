@@ -12,6 +12,9 @@ export const siteConfig = {
   phoneDisplay: "+91 94910 34572",
   phone: "+919491034572",
   whatsapp: "919491034572",
+  // phone: "+919396343345",
+ phoneDisplay2: "+91 9396343345",
+ whatsapp: "919396343345",
   profileImage: "/images/advocate-profile.png",
   // Set this to the real HTTPS domain before deployment.
   siteUrl: "https://www.example.com",
