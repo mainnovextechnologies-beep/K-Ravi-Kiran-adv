@@ -17,7 +17,7 @@ export const siteConfig = {
  whatsapp: "919396343345",
   profileImage: "/images/advocate-profile.png",
   // Set this to the real HTTPS domain before deployment.
-  siteUrl: "https://www.example.com",
+  siteUrl: "https://k-ravi-kiran-adv.vercel.app/",
   // Add a verified office address and Google Maps URL only when available.
   address: "Vijayawada, Andhra Pradesh, India",
   email: "",
